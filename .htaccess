@@ -1,0 +1,25 @@
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+</IfModule>
+
+# Protect configuration and storage
+<IfModule mod_authz_core.c>
+  <FilesMatch "^(config\.php)$">
+    Require all denied
+  </FilesMatch>
+</IfModule>
+
+RedirectMatch 403 (?i)/config/.*\.php$
+RedirectMatch 403 (?i)/storage/
+RedirectMatch 403 (?i)/includes/
+
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# NOTE: Do NOT put php_value here — cPanel PHP-FPM often returns HTTP 500.
+# Raise post_max_size in MultiPHP INI Editor if SDP payloads are truncated.

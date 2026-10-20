@@ -1,0 +1,27 @@
+# Secrets & local environment — NEVER commit these
+/config/config.php
+/config/*.local.php
+.env
+.env.*
+*.pem
+*.key
+credentials*.json
+
+# Runtime / logs
+/storage/logs/*.log
+/storage/cache/*
+!/storage/logs/.gitkeep
+!/storage/cache/.gitkeep
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
+*.bak
+*.tmp
+*.swp
+.idea/
+.vscode/
+
+# One-off tooling artifacts
+/docs/screenshots/_debug*
+/tests/redact_screenshot.php
